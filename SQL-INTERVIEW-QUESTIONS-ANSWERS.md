@@ -1433,3 +1433,34 @@ This repository is intended for SQL learning and interview preparation.
 
 ### 290. Find the month with highest revenue.
 **Answer:** Clarify the required result and grain, choose joins/window functions/aggregation, then validate edge cases and performance.
+
+
+### 291. How do you calculate a cumulative total per customer?
+**Answer:** Use SUM(amount) OVER (PARTITION BY customer_id ORDER BY transaction_date, transaction_id).
+
+### 292. How do you find the first purchase per customer?
+**Answer:** Use ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY purchase_date, purchase_id) and filter for 1.
+
+### 293. How do you find customers with more than five orders?
+**Answer:** GROUP BY customer_id and use HAVING COUNT(*) > 5.
+
+### 294. How do you find the highest order per customer?
+**Answer:** Use ROW_NUMBER or MAX according to whether you need the complete order row.
+
+### 295. How do you find products never sold?
+**Answer:** LEFT JOIN products to order lines and filter for a NULL matching order-line key, or use NOT EXISTS.
+
+### 296. How do you find departments with no employees?
+**Answer:** LEFT JOIN departments to employees and filter for NULL employee keys.
+
+### 297. How do you find duplicate records using ROW_NUMBER?
+**Answer:** Partition by the columns defining duplication, order deterministically, and mark rows where ROW_NUMBER() > 1.
+
+### 298. How do you compare two query results for equality?
+**Answer:** Compare both directions with EXCEPT/NOT EXISTS and account for duplicate semantics when required.
+
+### 299. How do you find the percentage of customers who placed an order?
+**Answer:** Divide the distinct ordering-customer count by the total customer count, using decimal arithmetic and zero protection.
+
+### 300. What should you mention when an interviewer asks for a SQL optimization?
+**Answer:** Explain the execution plan, data volume, predicates, joins, indexes, statistics, and measured before/after performance.
